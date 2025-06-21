@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طليعة مارتن كوبر الكشفية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+
+/*==============================رسالة للفاشل===============================*/
+/* بما انك وصلت هنا احب اقولك ركز علي نفسك يا فاشل, تركيزك مع غيرك اكبر اثبات لفشلك */
+/* GPT طور من نفسك يا استاذ */
+/* ربنا يهديك يا فاشل طريق السلامة */
+/*==============================رسالة للفاشل===============================*/
+
+
+        :root {
+            --scout-purple: #5A2D91; 
+            --scout-purple-dark: #4A2474; 
+            --scout-accent: #f8f6fa; 
+            --scout-accent-darker: #eeeaf3; 
+            --scout-white: #FFFFFF;
+            --text-light: #EAE0F8; 
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--scout-purple-dark);
+            color: var(--scout-white);
+            transition: margin-left 0.3s ease; 
+        }
+
+
+        .background-emblem {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            max-width: 500px;
+            opacity: 0.5; 
+            z-index: -1;
+            pointer-events: none;
+        }
+
+
+        .prof_sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px; 
+            width: 280px;
+            height: 100vh;
+            background-color: var(--scout-purple);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+            z-index: 1000;
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .prof_sidebar.open {
+            left: 0; 
+        }
+        
+        .prof_nav_link {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background-color 0.2s, color 0.2s, transform 0.2s;
+            border-left: 4px solid transparent; 
+        }
+
+        .prof_nav_link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px); 
+        }
+
+        .prof_nav_link.active {
+            background-color: var(--scout-purple-dark);
+            color: var(--scout-accent); 
+            border-left-color: var(--scout-accent); 
+        }
+
+        .prof_sidebar_header {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .prof_sidebar_header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--scout-accent); 
+        }
+
+
+        .prof_menu_toggle {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, background-color 0.3s;
+            flex-shrink: 0; 
+        }
+        
+        .prof_menu_toggle:hover {
+            transform: scale(1.1);
+            background: var(--scout-accent); 
+            color: var(--scout-purple-dark); 
+        }
+
+
+        .prof_content_section {
+            display: none; 
+            animation: fadeIn 0.8s ease-in-out;
+            min-height: 80vh;
+        }
+
+        .prof_content_section.active {
+            display: block; 
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .prof_member_card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .prof_member_card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .prof_member_card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--scout-accent); 
+            object-fit: cover;
+            margin: -50px auto 15px auto;
+        }
+        
+
+        #prof_img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid var(--scout-accent); 
+            object-fit: cover;
+            margin: 0 auto 40px auto; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        #prof_page .contact-links {
+            margin-top: 40px; 
+        }
+        #prof_page .contact-links a {
+            display: block; 
+            width: 85%; 
+            max-width: 280px; 
+            margin: 10px auto; 
+            padding: 15px 18px;
+            border-radius: 10px; 
+            background-color: var(--scout-accent); 
+            color: var(--scout-purple-dark); 
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            gap: 8px; 
+            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        #prof_page .contact-links a:hover {
+            transform: translateY(-3px);
+            background-color: var(--scout-accent-darker); 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            color: var(--scout-purple-dark); 
+        }
+        #prof_name {
+            margin-bottom: 10px; 
+        }
+        #prof_desc {
+            margin-top: 20px; 
+            margin-bottom: 30px;
+        }
+
+        
+        .prof_header_icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0; 
+        }
+        .prof_header_icon img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+        }
+
+        #prof_main_content {
+            padding-top: 20px; 
+        }
+
+        #prof_home .bg-white\/20 { 
+            margin-top: 3rem; 
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+
+    <div class="background-emblem">
+        <img src="logo1.png" alt="شعار الكشافة الشفاف" class="w-full h-auto">
+    </div>
+
+
+    <nav id="prof_sidebar" class="prof_sidebar">
+        <div class="prof_sidebar_header">
+            <img src="Martin.png" alt="شعار الطليعة" class="rounded-full mx-auto shadow-lg">
+            <h2 class="text-white font-bold text-xl mt-3">طليعة مارتن كوبر</h2>
+            <p class="text-sm text-scout-accent">الكشافة الأرثوذكسية</p>
+        </div>
+        <a class="prof_nav_link active" data-target="prof_home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/><path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/></svg>
+            الرئيسية
+        </a>
+        <a class="prof_nav_link" data-target="prof_about_scouting">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/></svg>
+            عن الكشافة
+        </a>
+        <a class="prof_nav_link" data-target="prof_members">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M15 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.274.274zm-3.213-3.2A5.5 5.5 0 1 0 8 2.5a5.5 5.5 0 0 0-3.19 1.3zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+            </svg>
+            أفراد الطليعة
+        </a>
+        <a class="prof_nav_link" data-target="prof_martin_cooper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                <path d="M7 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+            </svg>
+            من هو مارتن كوبر؟
+        </a>
+        <a class="prof_nav_link" data-target="prof_about_pachomius">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4 1.5A2.5 2.5 0 0 0 1.5 4v8A2.5 2.5 0 0 0 4 14.5h8a2.5 2.5 0 0 0 2.5-2.5V4A2.5 2.5 0 0 0 12 1.5H4zM4 0h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"/>
+                <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM4.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+            </svg>
+            حياة الأنبا باخوميوس
+        </a>
+
+    </nav>
+    
+    <div id="prof_main_content" class="relative z-10 p-5 md:p-8">
+        
+        <header id="prof_main_header" class="flex justify-between items-center mb-10">
+            <div class="prof_header_icon">
+                <img src="logo.png" alt="شعار الطليعة" class="rounded-full">
+            </div>
+            <h1 class="text-white text-xl md:text-3xl font-black flex-grow text-center mx-4">كشافة الأنبا باخوميوس</h1>
+            <button id="prof_sidebar_toggler" class="prof_menu_toggle" aria-label="فتح القائمة">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                </svg>
+            </button>
+        </header>
+
+        <main>
+
+            <section id="prof_home" class="prof_content_section active text-center">
+                <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl mt-16"> <!-- Increased top margin to add space -->
+                    <img src="Martin.png" alt="شعار الطليعة" class="w-28 h-28 md:w-40 md:h-40 rounded-full mx-auto border-4 border-white/80 shadow-lg mb-6">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-3" style="font-family: 'Coptic', sans-serif;">Ⲙⲁⲣⲧⲓⲛ Ⲕⲟⲩⲡⲉⲣ</h2>
+                    <p class="text-xl md:text-2xl text-scout-accent font-semibold mb-6">"لِيُضِئْ نُورُكُمْ هكَذَا قُدَّامَ النَّاسِ" (مت 5: 16)</p>
+                    <p class="text-md md:text-lg leading-relaxed max-w-2xl mx-auto text-light">
+                        نحن طليعة "مارتن كوبر" التابعة لكنيسة الأنبا باخوميوس.
+
+                        أنشأنا هذا الموقع لتحقيق مجموعة من الأهداف، في مقدّمتها نشر مقالات ومنشورات تعكس المعنى الحقيقي للكشافة، إلى جانب تقديم معلومات كشفية عامة قيّمة. كما يهدف الموقع إلى التعريف بهويتنا، وإبراز أعضاء طليعتنا ورسالتهم.
+                        
+                    </p>
+                </div>
+            </section>
+
+          
+            <section id="prof_about_patrol" class="prof_content_section">
+                 <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+                    <h2 class="text-4xl font-extrabold text-white mb-6 text-center">عن طليعة مارتن كوبر</h2>
+                    <div class="space-y-6 text-lg text-light leading-loose">
+                        <p><strong class="text-scout-accent">رسالتنا:</strong> إعداد جيل كشفي أرثوذكسي، يعيش وصايا الإنجيل ويطبق الوعد والقانون الكشفي في حياته اليومية، ليكون نورًا للعالم وملحًا للأرض.</p>
+                        <p><strong class="text-scout-accent">رؤيتنا:</strong> أن نكون طليعة كشفية أرثوذكسية رائدة، نُخرج شبابًا متمسكًا بإيمانه، خادمًا لكنيسته، وفاعلًا في مجتمعه على ضوء تعاليم المسيح.</p>
+                        <div>
+                            <strong class="text-scout-accent">صرخة الطليعة:</strong>
+                            <blockquote class="border-r-4 border-scout-accent pr-4 mt-2 italic">
+                                <p>"بإيماننا نتقدم... بمحبتنا نخدم... للمسيح دائمًا... مارتن كوبر!"</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="prof_members" class="prof_content_section">
+                <h2 class="text-4xl font-extrabold text-white mb-10 text-center">افراد الطليعة</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-16 pt-12">
+                  
+                    <div class="prof_member_card prof_trigger" 
+                         data-name="جورج نور" 
+                         data-role="القائد" 
+                         data-img="1.jpg" 
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201288518702" 
+                         data-fb="https://www.facebook.com/share/14EVknWpKZY/">
+                        <img src="1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/120x120/CCCCCC/000000?text=صورة'" alt="جورج نور">
+                        <h3 class="text-xl font-bold text-white mt-4">جورج نور</h3>
+                        <p class="text-scout-accent font-semibold">القائد</p>
+                    </div>
+                   
+                    <div class="prof_member_card prof_trigger"
+                         data-name="مارتن ايمن"
+                         data-role="العريف"
+                         data-img="martin.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201212711897"
+                         data-fb="https://www.facebook.com/1HJBbgoQrJ">
+                        <img src="martin.jpg" alt="صورة مارتن ايمن">
+                        <h3 class="text-xl font-bold text-white mt-4">مارتن ايمن</h3>
+                        <p class="text-scout-accent font-semibold">العريف</p>
+                    </div>
+
+                    <div class="prof_member_card prof_trigger"
+                    data-name="مارتن امجد"
+                    data-role="وكيل"
+                    data-img="MartnM.jpg"
+                    data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                    data-phone="+201280108244"
+                    data-fb="https://www.facebook.com/share/1BzLtNmr2r/">
+                   <img src="MartnM.jpg" alt="مارتن امجد">
+                   <h3 class="text-xl font-bold text-white mt-4">مارتن امجد</h3>
+                   <p class="text-scout-accent font-semibold">وكيل</p>
+               </div>
+                    
+                    <div class="prof_member_card prof_trigger"
+                         data-name="كيرلس اشرف"
+                         data-role="مسعف"
+                         data-img="2.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201148430935"
+                         data-fb="https://www.facebook.com/share/1Bjd6jS6F">
+                        <img src="2.jpg" alt="صورة كيرلس اشرف">
+                        <h3 class="text-xl font-bold text-white mt-4">كيرلس اشرف</h3>
+                        <p class="text-scout-accent font-semibold">مسعف</p>
+                    </div>
+                    
+                    <div class="prof_member_card prof_trigger"
+                         data-name="مينا اسامة"
+                         data-role="مسامر"
+                         data-img="3.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201278898977"
+                         data-fb="https://www.facebook.com/share/1AwGdMkRZ5/">
+                        <img src="3.jpg" alt="صورة بيتر عادل">
+                        <h3 class="text-xl font-bold text-white mt-4">مينا اسامة</h3>
+                        <p class="text-scout-accent font-semibold">مسامر</p>
+                    </div>
+                  
+                    <div class="prof_member_card prof_trigger"
+                         data-name="استيفن صفوت"
+                         data-role="حامل امتعة"
+                         data-img="4.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201200432793"
+                         data-fb="https://www.facebook.com/share/1ArJ4sayXT/">
+                        <img src="4.jpg" alt="استيفن صفوت">
+                        <h3 class="text-xl font-bold text-white mt-4">استيفن صفوت</h3>
+                        <p class="text-scout-accent font-semibold">حامل امتعة</p>
+                    </div>
+               
+                    <div class="prof_member_card prof_trigger"
+                         data-name="جوفاني نادي"
+                         data-role="أمين صندوق"
+                         data-img="5.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201277392743"
+                         data-fb="https://www.facebook.com/share/1EtiwPpNJn/">
+                        <img src="5.jpg" alt="جوفاني نادي">
+                        <h3 class="text-xl font-bold text-white mt-4">جوفاني نادي</h3>
+                        <p class="text-scout-accent font-semibold">أمين صندوق</p>
+                    </div>
+                 
+                    <div class="prof_member_card prof_trigger"
+                         data-name="مينا ايمن"
+                         data-role="مهندس"
+                         data-img="6.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201228761421"
+                         data-fb="https://www.facebook.com/share/19GPc7zSoY/">
+                        <img src="6.jpg" alt="مينا ايمن">
+                        <h3 class="text-xl font-bold text-white mt-4">مينا ايمن</h3>
+                        <p class="text-scout-accent font-semibold">مهندس</p>
+                    </div>
+            
+                    <div class="prof_member_card prof_trigger"
+                         data-name="يوسف انيس"
+                         data-role="أمين صندوق"
+                         data-img="7.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201225265889"
+                         data-fb="https://www.facebook.com/share/1DrL514joy/">
+                        <img src="7.jpg" alt="يوسف انيس">
+                        <h3 class="text-xl font-bold text-white mt-4">يوسف انيس</h3>
+                        <p class="text-scout-accent font-semibold">أمين صندوق</p>
+                    </div>
+                
+                    <div class="prof_member_card prof_trigger"
+                         data-name="كيرلس شنوده"
+                         data-role="سكرتير"
+                         data-img="8.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201289936277"
+                         data-fb="https://www.facebook.com/share/18XA4ZEcqP/">
+                        <img src="8.jpg" alt="كيرلس شنوده">
+                        <h3 class="text-xl font-bold text-white mt-4">كيرلس شنوده</h3>
+                        <p class="text-scout-accent font-semibold">سكرتير</p>
+                    </div>
+            
+                    <div class="prof_member_card prof_trigger"
+                         data-name="ماريو"
+                         data-role="سكرتير"
+                         data-img="9.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+20"
+                         data-fb="https://www.facebook.com/#">
+                        <img src="9.jpg" alt="ماريو">
+                        <h3 class="text-xl font-bold text-white mt-4">ماريو</h3>
+                        <p class="text-scout-accent font-semibold">سكرتير</p>
+                    </div>
+               
+                    <div class="prof_member_card prof_trigger"
+                         data-name="شارلي رافت"
+                         data-role="بلبل"
+                         data-img="10.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201212596122"
+                         data-fb="https://www.facebook.com/share/15JcoBvHyc/">
+                        <img src="10.jpg" alt="شارلي رافت">
+                        <h3 class="text-xl font-bold text-white mt-4">شارلي رافت</h3>
+                        <p class="text-scout-accent font-semibold">بلبل</p>
+                    </div>
+
+                </div>
+            </section>
+
+       
+            <section id="prof_page" class="prof_content_section">
+                <div class="max-w-3xl mx-auto">
+                    <button id="prof_back_btn" class="mb-8 flex items-center gap-2 text-lg text-scout-accent font-bold hover:underline">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                        </svg>
+                        العودة إلي الاعضاء
+                    </button>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 text-center shadow-2xl">
+                        <img id="prof_img" src="" alt="صورة شخصية">
+                        <h2 id="prof_name" class="text-4xl font-extrabold text-white mt-6"></h2>
+                        <p id="prof_role" class="text-2xl font-semibold text-scout-accent mb-4"></p>
+                        <p id="prof_desc" class="text-lg text-light leading-relaxed max-w-lg mx-auto mb-8"></p>
+                        <div class="flex flex-col items-center justify-center contact-links">
+                            <a id="prof_phone" href="#" target="_blank" title="رقم الهاتف">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.28 1.465l-2.13 2.13a1.09 1.09 0 0 0-.11 1.353 12.2 12.2 0 0 0 6.062 6.062c.42.274 1.02.213 1.352-.11l2.13-2.13c.492-.165 1.043-.049 1.465.28l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg>
+                                اتصال
+                            </a>
+                            <a id="prof_fb" href="#" target="_blank" title="حساب فيسبوك">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.603 0 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg>
+                                فيسبوك
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            
+            <section id="prof_about_scouting" class="prof_content_section">
+                 <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+                    <h2 class="text-4xl font-extrabold text-white mb-6 text-center">عن الحركة الكشفية</h2>
+                    <div class="space-y-6 text-lg text-light leading-loose">
+                       <p><strong class="text-scout-accent">الحركة الكشفية</strong> هي حركة تربوية عالمية، تهدف إلى تنمية الشباب بدنيًا وعقليًا واجتماعيًا وروحيًا. وفي إطارنا الأرثوذكسي، نسعى لتطبيق هذه المبادئ بما يتماشى مع إيماننا المسيحي، ليكون الكشاف شاهدًا للمسيح في كل مكان.</p>
+                       <p>تعتمد الكشفية على <strong class="text-scout-accent">"الطريقة الكشفية"</strong>، وهي نظام فريد للتربية الذاتية يتضمن التعلم من خلال العمل، والعمل في مجموعات صغيرة (الطلائع)، وتنمية المسؤولية الشخصية من خلال الوعد والقانون الكشفي الذي نربطه بتعاليمنا الروحية.</p>
+                       <a href="https://www.scout.org/ar" target="_blank" class="inline-block bg-scout-accent text-scout-purple-dark font-bold py-2 px-5 rounded-lg mt-4 hover:bg-scout-accent-darker transition-colors">
+                           زيارة موقع المنظمة العالمية
+                       </a>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="prof_about_pachomius" class="prof_content_section">
+                <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+                   <h2 class="text-4xl font-extrabold text-white mb-6 text-center">الأنبا باخوميوس: مؤسس الحياة الرهبانية الجماعية</h2>
+                   <div class="space-y-6 text-lg text-light leading-loose">
+                       <p>
+                        يُعد الأنبا باخوميوس (292 – 348 م) أحد أعظم أعمدة الحياة الروحية في تاريخ الكنيسة القبطية الأرثوذكسية، بل ويُعرف في العالم المسيحي بلقب "أب الشركة الرهبانية" أو "مؤسس نظام الرهبنة الجماعية (Coenobitic Monasticism)".
+                       </p>
+                       <p>
+                           <strong class="text-scout-accent">نشأته وبداية حياته:</strong>
+                           وُلد باخوميوس في مدينة طيبة (الأقصر حاليًا) من أبوين وثنيين. التحق بالجيش الروماني مجبرًا، وهناك تأثر بمحبة المسيحيين الذين كانوا يخدمون الجنود، مما دفعه إلى اعتناق المسيحية بعد تسريحه من الجيش. عمده أحد الكهنة في صعيد مصر، فبدأ حياته الجديدة بإيمان عميق وغيرة روحية قوية.
+                       </p>
+                       <p>
+                           <strong class="text-scout-accent">دعوة للرهبنة وبداية الطريق:</strong>
+                           اختار الأنبا باخوميوس طريق النسك وذهب إلى الصحراء، حيث تتلمذ على يد الشيخ الناسك القديس "بلامون"، وهناك تعلم أساسات الحياة الروحية والوحدة. لكنه شعر بدعوة خاصة من الله تدعوه لتأسيس رهبنة جديدة تقوم على الحياة المشتركة.
+                       </p>
+                       <p>
+                           <strong class="text-scout-accent">تأسيس الشركة الرهبانية:</strong>
+                           في عام 320 م، أسس أول دير جماعي في منطقة "تابينيسه" (التي تعرف الآن باسم دير باخوميوس في قنا)، ووضع نظامًا دقيقًا لحياة الرهبان، شمل قوانين العمل، والصلاة، والطعام، والطاعة، والتواضع. بلغ عدد الرهبان في أيامه أكثر من 7,000 راهب، وتوسعت أديرته إلى أنحاء مصر وأثرت في أوروبا لاحقًا.
+                       </p>
+                       <p>
+                           <strong class="text-scout-accent">فضائله وأثره:</strong>
+                           تميز الأنبا باخوميوس بالتواضع الشديد، والحكمة، والانضباط. رفض الرسامات الكنسية وظل راهبًا بسيطًا رغم عظمته. ترك للكنيسة "دستور الرهبنة" الذي أصبح نموذجًا يُحتذى به في الشرق والغرب، حتى إن القديس بندكتوس، مؤسس الرهبنة الغربية، تأثر به كثيرًا.
+                       </p>
+                       <p>
+                           <strong class="text-scout-accent">نهاية حياته:</strong>
+                           تنيّح القديس باخوميوس في عام 348 م بعد أن أصيب بوباء أثناء خدمته للرهبان المرضى، تاركًا تراثًا روحيًا ضخمًا وحركة رهبانية أثرت في العالم المسيحي حتى يومنا هذا.
+                       </p>
+                   </div>
+                </div>
+           </section>
+
+           <section id="prof_martin_cooper" class="prof_content_section">
+            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+               <h2 class="text-4xl font-extrabold text-white mb-6 text-center">من هو مارتن كوبر؟</h2>
+               <div class="space-y-6 text-lg text-light leading-loose">
+                   <p>
+                    مارتن كوبر (مواليد 1928) هو مهندس أمريكي يُلقب بـ "أبو الهاتف المحمول". ففي عام 1973، بينما كان يعمل في شركة موتورولا، قاد الفريق الذي اخترع أول هاتف محمول وأجرى أول مكالمة هاتفية منه في التاريخ، ليغير بذلك مفهوم الاتصالات إلى الأبد.
+                   </p>
+                   <p>
+                       <strong class="text-scout-accent">اختراعه ورؤيته:</strong>
+                       كانت رؤية كوبر تتمثل في أن تكون الاتصالات شخصية، مرتبطة بالفرد لا بالمكان. فقبل اختراعه، كانت الهواتف مقتصرة على السيارات والمنازل. لكنه حلم بجهاز صغير يمكن للمرء حمله في جيبه والتواصل من أي مكان. هذا الحلم هو ما نعيشه اليوم بفضل رؤيته.
+                   </p>
+               </div>
+            </div>
+       </section>
+       
+       </main>
+        
+       
+        <footer id="prof_main_footer" class="mt-12 py-4 text-white text-center text-sm opacity-70">
+             <p>© 2025 طليعة مارتن كوبر - الكشافة الأرثوذكسية.</p>
+        </footer>
+    </div>
+    
+  
+    <div id="prof_overlay" class="fixed inset-0 bg-black/50 z-50 hidden"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const prof_sidebar = document.getElementById('prof_sidebar');
+            const prof_sidebar_toggler = document.getElementById('prof_sidebar_toggler');
+            const prof_overlay = document.getElementById('prof_overlay');
+            const prof_nav_links = document.querySelectorAll('.prof_nav_link');
+            const prof_content_sections = document.querySelectorAll('.prof_content_section');
+            const prof_triggers = document.querySelectorAll('.prof_trigger');
+            const prof_back_btn = document.getElementById('prof_back_btn');
+            const prof_main_header = document.getElementById('prof_main_header');
+            const prof_main_footer = document.getElementById('prof_main_footer');
+
+            const prof_open_sidebar = () => {
+                prof_sidebar.classList.add('open');
+                prof_overlay.classList.remove('hidden');
+            };
+
+            const prof_close_sidebar = () => {
+                prof_sidebar.classList.remove('open');
+                prof_overlay.classList.add('hidden');
+            };
+
+            prof_sidebar_toggler.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prof_open_sidebar();
+            });
+
+            prof_overlay.addEventListener('click', prof_close_sidebar);
+
+            const prof_display_page = (prof_page_id) => {
+                const is_prof = prof_page_id === 'prof_page';
+
+                prof_main_header.style.display = is_prof ? 'none' : 'flex';
+                prof_main_footer.style.display = is_prof ? 'none' : 'block';
+
+                prof_content_sections.forEach(sec => sec.classList.remove('active'));
+                prof_nav_links.forEach(link => {
+                    link.classList.toggle('active', !is_prof && link.dataset.target === prof_page_id);
+                });
+
+                const prof_target_page = document.getElementById(prof_page_id);
+                if (prof_target_page) {
+                    prof_target_page.classList.add('active');
+                    window.scrollTo(0, 0);
+                }
+
+                if (window.innerWidth < 768) {
+                    prof_close_sidebar();
+                }
+            };
+
+            prof_nav_links.forEach(link => {
+                link.addEventListener('click', () => prof_display_page(link.dataset.target));
+            });
+
+            const prof_display_profile = (prof_card) => {
+                const name = prof_card.dataset.name;
+                const role = prof_card.dataset.role;
+                const img = prof_card.dataset.img;
+                const desc = prof_card.dataset.desc;
+                const phone = prof_card.dataset.phone;
+                const fb = prof_card.dataset.fb;
+
+                document.getElementById('prof_name').textContent = name;
+                document.getElementById('prof_role').textContent = role;
+                document.getElementById('prof_img').src = img;
+                document.getElementById('prof_desc').textContent = desc;
+
+                const prof_phone_el = document.getElementById('prof_phone');
+                if (phone) {
+                    prof_phone_el.href = `tel:${phone}`;
+                    prof_phone_el.classList.remove('hidden');
+                } else {
+                    prof_phone_el.classList.add('hidden');
+                }
+
+                const prof_fb_el = document.getElementById('prof_fb');
+                if (fb) {
+                    prof_fb_el.href = fb;
+                    prof_fb_el.classList.remove('hidden');
+                } else {
+                    prof_fb_el.classList.add('hidden');
+                }
+
+                prof_display_page('prof_page');
+            };
+
+            prof_triggers.forEach(card => {
+                card.addEventListener('click', () => prof_display_profile(card));
+            });
+
+            prof_back_btn.addEventListener('click', () => prof_display_page('prof_members'));
+
+            prof_display_page('prof_home');
+        });
+    </script>
+<script>
+    const cursor_config = {
+        cursor_width: '24px',
+        cursor_height: '24px',
+        cursor_color: '#e90000',
+        cursor_border: '#e90000',
+        border_width: '2',
+        clicker_color: '#cf0000',
+        custom_cursor: false,
+        custom_svg: 'svg-here',
+    };
+</script>
+<script src='https://theamanstark.com/cdn/components/cursor/v1.3/cursr.min.js'></script>
+      <script type='text/javascript'>
+
+    document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            function disableselect(e) {
+                return false;
+            }
+
+            function reEnable() {
+                return true;
+            }
+
+            document.onselectstart = new Function("return false;");
+
+            if (window.sidebar) {
+                document.onmousedown = disableselect;
+                document.onclick = reEnable;
+            }
+        });
+
+</script>
+</body>
+</html>
+
