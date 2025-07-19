@@ -6,7 +6,7 @@
     <title>طليعة مارتن كوبر الكشفية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
 
@@ -19,53 +19,65 @@
 
         :root {
             --scout-purple: #6d3bb1;
-            --scout-purple-dark: #3a1c5c;
-            --scout-gold: #FFD700;
-            --scout-accent: #bfa3e6;
-            --scout-accent-light: #eae0f8;
             --scout-white: #fff;
-            --scout-shadow: 0 8px 32px 0 rgba(90,45,145,0.18);
         }
 
         body {
-            background: linear-gradient(120deg, #6d3bb1 0%, #3a1c5c 100%);
+            background: linear-gradient(135deg, #1a1026 0%, #3a1c5c 100%);
             min-height: 100vh;
             font-family: 'Cairo', sans-serif;
             color: var(--scout-white);
             letter-spacing: 0.01em;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: inherit;
+            filter: blur(32px) brightness(1.08);
+            opacity: 0.7;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .scout-card-section {
             max-width: 48rem;
             margin: 3rem auto 0 auto;
-            background: linear-gradient(135deg, #6d3bb1 0%, #3a1c5c 70%, #FFD700 100%);
-            border-radius: 2.2rem;
-            box-shadow: 0 10px 40px 0 rgba(58,28,92,0.25), 0 2px 8px 0 rgba(90,45,145,0.08);
+            background: rgba(20,10,30,0.92) !important;
+            box-shadow: 0 8px 32px 0 #1a102680 !important;
+            backdrop-filter: blur(20px) !important;
+            border: 1.5px solid #6d3bb1 !important;
+            border-radius: 2.2rem !important;
             padding: 2.7rem 2.2rem 2.7rem 2.2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: all 0.3s;
+            transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
-            border: 2.5px solid var(--scout-gold);
+            border: 2.5px solid var(--scout-white);
+        }
+
+        .scout-card-section:hover {
+            box-shadow: 0 16px 48px 0 #6d3bb180 !important;
+            transform: translateY(-6px) scale(1.015);
         }
 
         .scout-card-section h2, .scout-card-section h1 {
-            color: var(--scout-gold);
+            color: var(--scout-white);
             font-size: 2.7rem;
             font-weight: 900;
             margin-bottom: 2rem;
             text-align: center;
-            text-shadow: 0 2px 16px #5a2d91, 0 0 2px #FFD700;
             letter-spacing: 0.03em;
-            border-bottom: 2px solid var(--scout-gold);
+            border-bottom: 2px solid var(--scout-white);
             padding-bottom: 0.5rem;
             margin-top: 0.5rem;
         }
 
         .scout-card-section p, .scout-card-section li, .scout-card-section blockquote {
-            color: var(--scout-accent-light);
+            color: var(--scout-white);
             font-size: 1.18rem;
             line-height: 2.1;
             font-weight: 500;
@@ -73,7 +85,7 @@
 
         .scout-card-section blockquote {
             background: rgba(255,255,255,0.10);
-            border-right: 4px solid var(--scout-gold);
+            border-right: 4px solid var(--scout-white);
             border-radius: 0.7rem;
             padding: 1rem 1.5rem;
             margin: 1.5rem 0;
@@ -93,33 +105,36 @@
         }
 
         .scout-card-section li:before {
-            content: '\2728'; /* نجمة ذهبية صغيرة */
-            color: var(--scout-gold);
+            content: '\25CF'; /* دائرة بنفسجية */
+            color: var(--scout-white);
             position: absolute;
             right: 0;
             font-size: 1.1em;
             top: 0.1em;
         }
 
-        .scout-btn {
-            background: linear-gradient(90deg, #FFD700 0%, #8a3fb1 100%);
-            color: #3a1c5c;
-            font-weight: bold;
+        .scout-btn, .segment-btn, .game-modal-btn {
+            background: #1a1026;
+            color: #fff;
+            border-radius: 2rem;
+            font-family: 'Orbitron', 'Cairo', sans-serif;
+            font-weight: 700;
+            box-shadow: 0 2px 16px #6d3bb140, 0 1.5px 8px #fff2;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.2s, background 0.2s, color 0.2s, transform 0.2s;
             border: none;
-            border-radius: 1.2rem;
             padding: 0.9rem 2.2rem;
             font-size: 1.15rem;
-            box-shadow: 0 2px 8px #5a2d91a0;
             margin: 1rem 0;
             cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-            border: 2px solid var(--scout-gold);
         }
 
-        .scout-btn:hover {
-            background: linear-gradient(90deg, #bfa3e6 0%, #FFD700 100%);
-            color: #3a1c5c;
-            transform: translateY(-2px) scale(1.04);
+        .scout-btn:hover, .segment-btn:hover, .game-modal-btn:hover {
+            background: #6d3bb1;
+            color: #fff;
+            box-shadow: 0 0 32px 8px #6d3bb180, 0 8px 32px #1a102680;
+            transform: translateY(-2px) scale(1.07);
         }
 
         .scout-card-section .scout-deco {
@@ -141,9 +156,11 @@
         }
 
         .prof_sidebar {
-            background: linear-gradient(135deg, #6d3bb1 0%, #3a1c5c 100%);
-            box-shadow: 4px 0 32px rgba(90,45,145,0.18);
-            border-left: 3px solid var(--scout-gold);
+            background: linear-gradient(135deg, #12081a 0%, #2a0e4a 100%);
+            box-shadow: 0 8px 32px #1a102680;
+            border-left: 2px solid #6d3bb1;
+            backdrop-filter: blur(24px);
+            border-radius: 1.5rem 0 0 1.5rem;
             position: relative;
         }
 
@@ -220,30 +237,32 @@
         }
         
         .prof_nav_link {
-            color: #8a3fb1 !important;
-            font-size: 1.1rem;
+            color: #fff !important;
+            font-family: 'Orbitron', 'Cairo', sans-serif;
             font-weight: 700;
+            border-radius: 1.2rem;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
             padding: 12px 15px;
             margin-bottom: 8px;
-            border-radius: 8px;
             cursor: pointer;
             display: flex;
             flex-direction: row-reverse;
             align-items: center;
             gap: 12px;
-            transition: background-color 0.2s, color 0.2s, transform 0.2s;
             border-right: 4px solid transparent;
         }
 
         .prof_nav_link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px); 
+            background: #fff3;
+            color: #fff;
+            transform: translateX(8px) scale(1.04);
+            box-shadow: 0 2px 12px #fff4;
         }
 
         .prof_nav_link.active {
-            color: #fff !important;
-            background: linear-gradient(90deg, #8a3fb1 60%, #fff0 100%);
-            border-right-color: var(--scout-accent);
+            color: #6d3bb1 !important;
+            background: #fff2;
+            box-shadow: 0 2px 12px #fff2;
         }
 
         .prof_sidebar_header {
@@ -306,7 +325,7 @@
 
         .prof_content_section {
             display: none; 
-            animation: fadeIn 0.8s ease-in-out;
+            animation: fadeInUp 0.8s cubic-bezier(.4,1.4,.6,1);
             min-height: 80vh;
         }
 
@@ -314,24 +333,25 @@
             display: block; 
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: none; }
         }
 
         .prof_member_card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 20px;
+            background: rgba(20,10,30,0.97);
+            border-radius: 2rem;
+            padding: 24px 16px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1.5px solid #6d3bb1;
+            box-shadow: 0 4px 24px #1a102680;
+            transition: box-shadow 0.3s, transform 0.3s;
             cursor: pointer;
         }
 
         .prof_member_card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 16px 48px #6d3bb180;
+            transform: translateY(-8px) scale(1.03);
         }
         
         .prof_member_card img {
@@ -403,6 +423,7 @@
             width: 70%;
             height: 70%;
             object-fit: contain;
+            filter: drop-shadow(0 2px 8px #fff6);
         }
 
         #prof_main_content {
@@ -588,24 +609,16 @@
         }
     </style>
 </head>
-<body class="min-h-screen">
-<div id="welcome-banner" style="direction:rtl;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#8a3fb1 0%,#6d3bb1 50%,#4a1c5c 100%);box-shadow:0 8px 32px #3a1c5c66;border-radius:0.8rem;padding:0.5rem 2rem;gap:1.5rem;border:2px solid rgba(255,255,255,0.3);max-width:900px;width:95%;min-height:50px;font-family:'Cairo',sans-serif;">
-  <div style="flex:1;color:#fff;font-size:0.85rem;font-weight:600;line-height:1.8;position:relative;">
-    <div style="margin-bottom:0.4rem;">مرحباً بكم أيها القادة، نحن طليعة مارتن كوبر، نتمنى أن ينال الموقع إعجابكم</div>
-    <div style="font-size:0.8rem;color:#ffe082;margin-bottom:0.3rem;">اتمنى ان يحقق اعلى تقييم في الاسبوع 🌚</div>
-    <div style="font-size:0.85rem;color:#FFD700;font-weight:700;">— طليعة مارتن كوبر</div>
-  </div>
-  <button id="close-welcome-banner" aria-label="إغلاق الرسالة" style="background:none;border:none;color:#fff;font-size:1.3rem;font-weight:bold;cursor:pointer;align-self:flex-start;transition:color 0.2s;margin-left:-15px;">✖</button>
-</div>
+
 
     <div class="background-emblem">
-        <img src="logo1.png" alt="شعار الكشافة شفاف" class="w-full h-auto">
+        <img src="logo1.png" alt="شعار الكشافة شفاف" class="w-full h-auto" loading="lazy" width="500" height="500">
     </div>
 
 
     <nav id="prof_sidebar" class="prof_sidebar">
         <div class="prof_sidebar_header">
-            <img src="Martin.png" alt="شعار الطليعة" class="rounded-full mx-auto shadow-lg">
+            <img src="Martin.png" alt="شعار الطليعة" class="rounded-full mx-auto shadow-lg" loading="lazy" width="80" height="80">
             <h2 class="text-white font-bold text-xl mt-3">طليعة مارتن كوبر</h2>
             <p class="text-sm text-scout-accent">الكشافة الأرثوذكسية</p>
         </div>
@@ -622,6 +635,22 @@
             </svg>
             أفراد الطليعة
         </a>
+       <!-- Start اركان الطليعة menu -->
+       <div class="prof_nav_link patrol-pillars-menu-toggle" style="cursor:pointer;display:flex;flex-direction:row-reverse;align-items:center;gap:12px;" tabindex="0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4zm1 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/></svg>
+        اركان الطليعة
+        <svg class="patrol-pillars-caret" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right:auto;transition:transform 0.2s;"><path fill-rule="evenodd" d="M1.646 5.646a.5.5 0 0 1 .708 0L8 11.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+    </div>
+    <div class="patrol-pillars-submenu" style="display:none;padding-right:32px;">
+        <a class="prof_nav_link" data-target="prof_scouts_in_ww" style="background:none;font-weight:normal;font-size:1rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4zm1 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/></svg>
+            دور الكشافة في الحرب العالمية
+        </a>
+        <a class="prof_nav_link" data-target="prof_key_figures" style="background:none;font-weight:normal;font-size:1rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4zm1 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/></svg>
+            شخصيات لها تاثير في الحركة الكشفية
+        </a>
+    </div>
         <!-- Start قصص menu -->
         <div class="prof_nav_link stories-menu-toggle" style="cursor:pointer;display:flex;align-items:center;gap:12px;" tabindex="0">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4zm1 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/></svg>
@@ -667,7 +696,7 @@
                 دور الهاتف في الحياة الكشفية
             </a>
         </div>
-        <!-- End قصص menu -->
+
         <a class="prof_nav_link" data-target="prof_quiz_bank">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 13A6 6 0 1 1 8 2a6 6 0 0 1 0 12z"/>
@@ -676,6 +705,7 @@
             بنك الأسئلة الكشفية
         </a>
 
+ 
 
     </nav>
     
@@ -683,7 +713,7 @@
         
         <header id="prof_main_header" class="flex justify-between items-center mb-10">
             <div class="prof_header_icon">
-                <img src="logo.png" alt="شعار الطليعة" class="rounded-full">
+                <img src="logo.png" alt="شعار الطليعة" class="rounded-full" loading="lazy" width="44" height="44">
             </div>
             <h1 class="text-white text-xl md:text-3xl font-black flex-grow text-center mx-4">كشافة الأنبا باخوميوس</h1>
             <button id="prof_sidebar_toggler" class="prof_menu_toggle" aria-label="فتح القائمة">
@@ -697,7 +727,7 @@
 
             <section id="prof_home" class="prof_content_section active text-center">
                 <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl mt-16"> <!-- Increased top margin to add space -->
-                    <img src="Martin.png" alt="شعار الطليعة" class="w-28 h-28 md:w-40 md:h-40 rounded-full mx-auto border-4 border-white/80 shadow-lg mb-6">
+                    <img src="Martin.png" alt="شعار الطليعة" class="w-28 h-28 md:w-40 md:h-40 rounded-full mx-auto border-4 border-white/80 shadow-lg mb-6" loading="lazy" width="160" height="160">
                     <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-3" style="font-family: 'Coptic', sans-serif;">Ⲙⲁⲣⲧⲓⲛ Ⲕⲟⲩⲡⲉⲣ</h2>
                     <p class="text-xl md:text-2xl text-scout-accent font-semibold mb-6">"لِيُضِئْ نُورُكُمْ هكَذَا قُدَّامَ النَّاسِ" (مت 5: 16)</p>
                     <p class="text-md md:text-lg leading-relaxed max-w-2xl mx-auto text-light">
@@ -873,8 +903,31 @@
                         <h3 class="text-xl font-bold text-white mt-4">شارلي رافت</h3>
                         <p class="text-scout-accent font-semibold">بلبل</p>
                     </div>
+                    
+                    <div class="prof_member_card prof_trigger"
+                         data-name="كيرلس عاطف"
+                         data-role=""
+                         data-img="kero.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201208675059"
+                         data-fb="https://www.facebook.com/share/19CrpZN3AT">
+                        <img src="kero.jpg" alt="صورة كيرلس عاطف">
+                        <h3 class="text-xl font-bold text-white mt-4">كيرلس عاطف</h3>
+                        <p class="text-scout-accent font-semibold"></p>
+                    </div>
 
-                </div>
+                <div class="prof_member_card prof_trigger"
+                         data-name="ميشيل حمدي"
+                         data-role=""
+                         data-img="mesho.jpg"
+                         data-desc="نحن طليعة مارتن كوبر… فكرة نُؤمن بها، ومسيرة لا تتوقف."
+                         data-phone="+201278379030"
+                         data-fb="https://www.facebook.com/share/1AmusMiUzY/">
+                        <img src="mesho.jpg" alt=" ميشيل ">
+                        <h3 class="text-xl font-bold text-white mt-4">ميشيل حمدي</h3>
+                        <p class="text-scout-accent font-semibold"></p>
+                    </div>
+
             </section>
 
        
@@ -1006,11 +1059,8 @@
           <div id="quiz-options" class="flex flex-col gap-3 w-full mb-3"></div>
           <div id="quiz-answer" class="text-base text-green-200 font-semibold mt-3 mb-2 hidden transition-all duration-300"></div>
           <!-- أزرار التنقل ستتم إضافتها ديناميكياً عبر الجافاسكريبت -->
-        </div>
-        <!-- أيقونة العين تحت الكارت -->
-        <div class="text-center mt-4">
-          <div class="text-white text-sm opacity-80">💡 اضغط على الأزرار أسفل الكارت للتنقل بين الأسئلة</div>
-        </div>
+                </div>
+        
         </section>
 
         <section id="prof_scout_games" class="prof_content_section">
@@ -1139,8 +1189,9 @@
         
        
         <footer id="prof_main_footer" class="mt-12 py-4 text-white text-center text-sm opacity-70" style="position:relative;">
-          <span style="display:block;font-size:1.1rem;font-weight:700;letter-spacing:0.03em;color:#FFD700;z-index:2;position:relative;">© 2025 طليعة مارتن كوبر - الكشافة الأرثوذكسية.</span>
-          <img src="logo1.png" alt="شعار الكشافة الشفاف" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:110px;opacity:0.18;filter:brightness(0) saturate(100%) invert(92%) sepia(100%) saturate(2000%) hue-rotate(10deg) brightness(1.1);z-index:1;pointer-events:none;" />
+          <span style="display:block;font-size:1.1rem;font-weight:700;letter-spacing:0.03em;color:#fff;z-index:2;position:relative;">© 2025 طليعة مارتن كوبر - الكشافة الأرثوذكسية.</span>
+          <span class="scout-quote">"كن مستعدًا دائمًا... فالعالم يحتاج إلى نورك!"</span>
+          <img src="logo1.png" alt="شعار الكشافة الشفاف" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:110px;opacity:0.18;filter:brightness(0) saturate(100%) invert(92%) sepia(100%) saturate(2000%) hue-rotate(10deg) brightness(1.1);z-index:1;pointer-events:none;" loading="lazy" width="110" height="110"/>
         </footer>
     </div>
     
@@ -1224,8 +1275,10 @@
             };
 
             prof_nav_links.forEach(link => {
-                // تجاهل زر القصص الرئيسي من التنقل
+                
                 if (link.classList.contains('stories-menu-toggle')) return;
+                
+                if (link.classList.contains('patrol-pillars-menu-toggle')) return;
                 link.addEventListener('click', () => prof_display_page(link.dataset.target));
             });
 
@@ -1269,7 +1322,7 @@
 
             prof_display_page('prof_home');
 
-            // بنك الأسئلة الكشفية متعدد الأقسام
+            
             const quizSections = {
                 history: [
                     { q: 'من هو مؤسس الحركة الكشفية؟', a: 'اللورد بادن باول' },
@@ -1344,7 +1397,7 @@
                     { q: 'ما هي أهم قاعدة في استخدام معدات التخييم؟', a: 'فحصها قبل الاستخدام' },
                     { q: 'ما هي أهم قاعدة في استخدام معدات الطهي؟', a: 'تنظيفها بعد الاستخدام' },
                     { q: 'ما هي أهم قاعدة في استخدام معدات الإضاءة؟', a: 'التأكد من وجود بطاريات كافية' },
-                    // --- أسئلة المعسكرات وأنشطة الخلاء ---
+                    
                     { q: 'المعسكرات هى أسلوب تربوي يهدف الى تدريب الطلاب لتحقيق اهداف ترويحية.', a: 'صواب (✓)' },
                     { q: 'تنمية القيادة والتبعية والاعتماد على النفس من أهمية المعسكرات.', a: 'صواب (✓)' },
                     { q: 'التربية الصحية والأمن والسلامة من اغراض المعسكرات فقط.', a: 'خطأ (✗)' },
@@ -1385,8 +1438,6 @@
                     { q: 'المذهب المثالي هو احدى انواع برامج المعسكرات.', a: 'خطأ (✗)' },
                     { q: 'المذهب الطبيعي هو احدى فلسفة المعسكرات.', a: 'صواب (✓)' },
                     { q: 'من الادوات الهامة للتخييم الملايات وفرش الارض.', a: 'صواب (✓)' },
-                    { q: 'من أهم مسئوليات قائد المخيم عدم التأكد من اخماد النار.', a: 'صواب (✓)' },
-                    { q: 'تتكون الخيمة من سقف علوي وحبال فقط.', a: 'خطأ (✗)' },
                     { q: 'من أنواع الخيام الخيمة العربية.', a: 'صواب (✓)' },
                     { q: 'ترويح الخلاء هو إحدى أنواع الترويح التي تشمل برامجه على العديد من أوجه النشاط.', a: 'صواب (✓)' },
                     { q: 'تستخدم النار المربعة في حفلات السمر.', a: 'صواب (✓)' },
@@ -1394,7 +1445,7 @@
                     { q: 'تعد حبال النايلون من أنواع الحبال البتروكيماوية.', a: 'صواب (✓)' },
                     { q: 'عقدة التقصيرة تستخدم للوصل بين حبلين من سمكين مختلفين.', a: 'خطأ (✗)' },
                     { q: 'عقدة السماك تستخدم في وصل حبلين من سمك واحد.', a: 'صواب (✓)' },
-                    // --- أسئلة اختيار من متعدد (مهارات كشفية) ---
+                    
                     { q: 'اذكر نوع النيران بالشكل الموضح أمامك هي ............ (صورة نار نجمية)', a: 'النار النجمية' },
                     { q: 'تذكر نوع النيران الموضحة بالصورة التي أمامك ............ (صورة نار الخندق)', a: 'نار الخندق' },
                     { q: 'الشكل الموضح بالصورة التي امامك هو ............ (صورة خطوات عمل ربطة وتدية)', a: 'ربطه الدورة والنصف دوره' },
@@ -1404,7 +1455,7 @@
                     { q: 'تشير الصورة التي امامك إلى احد أنواع الخيام وهي الخيمة ............ (صورة خيمة هرمية)', a: 'الهرمية' },
                     { q: '............ هي من أنواع النيران التي تتميز بشده الحراره وتركيزها وتستخدم في تجفيف الحطب.', a: 'النار العاكسة' },
                     { q: 'قسم حلمي ابراهيم الترويح في الخلاء الى ..........', a: 'جميع ما سبق' },
-                    // ... existing code ...
+                    
                 ],
                 law: [
                     { q: 'كم عدد بنود القانون الكشفي؟', a: '10 بنود' },
@@ -1439,7 +1490,7 @@
                     { q: 'ما هو الوعد الكشفي؟', a: 'أعد أن أبذل جهدي في أن أقوم بواجبي نحو الله والوطن...' },
                     { q: 'ما هي أعلى رتبة كشفية؟', a: 'وسام الشارة الخشبية' },
 
-                    // --- بنك أسئلة مادة المعسكرات وأنشطة الخلاء (تخصص ترويح رياضي - 10062) ---
+                    
                     { q: 'تتكون الحبال من نمرين فقط ومجموعة من الخيوط.', a: 'خطأ (✗)' },
                     { q: 'تصنع الحبال الطبيعية من النايلون.', a: 'خطأ (✗)' },
                     { q: 'الدورة عبارة عن استعمال حبل مع أكثر من عمود (قائم).', a: 'صواب (✓)' },
@@ -1477,7 +1528,7 @@
                     { q: 'لا يمكن استعمال حامل معدني.', a: 'خطأ (✗)' },
                     { q: 'تستخدم نار النجمة بالقرب من الخيام والأمتعة.', a: 'صواب (✓)' },
                     { q: 'لا تحتاج نار النجمة لتهوية كافية.', a: 'خطأ (✗)' },
-                    // --- أسئلة اختيار من متعدد (معلومات عامة) ---
+                    
                     { q: 'تستخدم النار العاكسة في ............', a: 'صناعة الخبز' },
                     { q: 'تستخدم نار الصياد في ............', a: 'الطهي' },
                     { q: 'تستخدم نار الخندق في ............', a: 'الحماية من الرياح' },
@@ -1518,7 +1569,209 @@
                     { q: 'يشير هذا النموذج الى ............ (صورة ربطة وتدية)', a: 'الوتدية' },
                     { q: 'يشير هذا النموذج الى ............ (صورة عقدة تقصير)', a: 'الدورة المقصبة' },
                     { q: 'يشير هذا النموذج الى ............ (صورة عقدة السماك)', a: 'عقدة السماك' },
-                    // ... existing code ...
+                    
+                ],
+                skills: [
+                    { q: 'ما هي العقدة التي تستخدم لربط حبلين من نفس السمك؟', a: 'عقدة التوصيل (Sheet Bend)' },
+                    { q: 'ما هي العقدة التي تستخدم لبدء وربط الحبال حول عمود؟', a: 'عقدة البداية (Clove Hitch)' },
+                    { q: 'ما هي العقدة التي تستخدم لرفع الأشياء؟', a: 'عقدة الحمالة (Bowline)' },
+                    { q: 'ما هو أفضل وقت لنصب الخيمة؟', a: 'قبل الغروب بوقت كافٍ' },
+                    { q: 'ما هي قاعدة "اترك المكان أفضل مما وجدته"؟', a: 'تنظيف مكان التخييم قبل المغادرة' },
+                    { q: 'ما هي أهم قاعدة في عبور الطريق؟', a: 'النظر يمينًا ويسارًا والتأكد من خلو الطريق' },
+                    { q: 'ما هو الإسعاف الأولي للجروح البسيطة؟', a: 'تنظيف الجرح وتغطيته بضماد معقم' },
+                    { q: 'ما هي العقدة التي تستخدم في تسلق الجبال؟', a: 'عقدة الثمانية (Figure Eight Knot)' },
+                    { q: 'ما هي العقدة التي تستخدم في تثبيت الخيمة؟', a: 'عقدة الوتد (Taut-line Hitch)' },
+                    { q: 'ما هي العقدة التي تستخدم في صنع سلم بالحبال؟', a: 'عقدة السلم (Ladder Knot)' },
+                    { q: 'ما هي العقدة التي تستخدم في ربط حبل حول جسم دائري؟', a: 'عقدة الأنشوطة (Round Turn and Two Half Hitches)' },
+                    { q: 'ما هي العقدة التي تستخدم في ربط حبلين مختلفي السمك؟', a: 'عقدة الصياد (Fisherman\'s Knot)' },
+                    { q: 'ما هي العقدة التي تستخدم في صنع حلقة ثابتة في نهاية الحبل؟', a: 'عقدة الحمالة (Bowline)' },
+                    { q: 'ما هي العقدة التي تستخدم في ربط الحبال بالأشجار؟', a: 'عقدة التثبيت (Timber Hitch)' },
+                    { q: 'ما هي العقدة التي تستخدم في ربط الحبال بالأعمدة؟', a: 'عقدة العمود (Pole Hitch)' },
+                    { q: 'ما هي العقدة التي تستخدم في ربط الحبال بالأوتاد؟', a: 'عقدة الوتد (Taut-line Hitch)' },
+                    { q: 'ما هي العقدة التي تستخدم في ربط الحبال بالأكياس؟', a: 'عقدة الكيس (Bag Knot)' },
+                    { q: 'ما هي أهم قاعدة في استخدام السكين الكشفي؟', a: 'استخدامه بحذر وعدم توجيهه نحو الآخرين' },
+                    { q: 'ما هي أهم قاعدة في استخدام الفأس الكشفي؟', a: 'استخدامه في مكان آمن وبعيد عن الآخرين' },
+                    { q: 'ما هي أهم قاعدة في استخدام المنشار الكشفي؟', a: 'استخدامه بحذر وارتداء القفازات' },
+                    { q: 'ما هي أهم قاعدة في استخدام الحبال؟', a: 'التأكد من جودتها وعدم وجود تلف' },
+                    { q: 'ما هي أهم قاعدة في استخدام البوصلة؟', a: 'إبعادها عن المعادن والمغناطيس' },
+                    { q: 'ما هي أهم قاعدة في استخدام الخرائط؟', a: 'قراءتها من الشمال' },
+                    { q: 'ما هي أهم قاعدة في استخدام الإسعافات الأولية؟', a: 'الهدوء والتصرف بسرعة' },
+                    { q: 'ما هي أهم قاعدة في استخدام معدات التخييم؟', a: 'فحصها قبل الاستخدام' },
+                    { q: 'ما هي أهم قاعدة في استخدام معدات الطهي؟', a: 'تنظيفها بعد الاستخدام' },
+                    { q: 'ما هي أهم قاعدة في استخدام معدات الإضاءة؟', a: 'التأكد من وجود بطاريات كافية' },
+                    
+                    { q: 'المعسكرات هى أسلوب تربوي يهدف الى تدريب الطلاب لتحقيق اهداف ترويحية.', a: 'صواب (✓)' },
+                    { q: 'تنمية القيادة والتبعية والاعتماد على النفس من أهمية المعسكرات.', a: 'صواب (✓)' },
+                    { q: 'التربية الصحية والأمن والسلامة من اغراض المعسكرات فقط.', a: 'خطأ (✗)' },
+                    { q: 'يهتموا بدراسة الطبيعة من وجه نظر الواقعين.', a: 'صواب (✓)' },
+                    { q: 'من انواع المعسكرات من حيث مدة الاقامة الشاطئية والترويحية.', a: 'خطأ (✗)' },
+                    { q: 'من إعداد وتخطيط للمعسكر تحديد اغراض المعسكر وتحديد عدد المشاركين.', a: 'صواب (✓)' },
+                    { q: 'نائب مدير المعسكر يتولى ادارة المعسكر ويقوم بالأشراف على جميع اعمال المعسكر.', a: 'خطأ (✗)' },
+                    { q: 'مدير المخيم الصحي يتولى الامور الطبية والاسعافات الاولية.', a: 'صواب (✓)' },
+                    { q: 'مدير الخدمة العامة يرأس لجنة الخدمة العامة.', a: 'صواب (✓)' },
+                    { q: 'اعداد السجلات الخاصة بالأنشطة والدورات الرياضية من اهم مهام اللجنة الرياضية.', a: 'صواب (✓)' },
+                    { q: 'الاشراف على اذاعة المعسكر من اهم مهام اللجنة الثقافية فقط.', a: 'خطأ (✗)' },
+                    { q: 'اختيار الافلام السينمائية التى تعرض بالمعسكر من اهم مهام اللجنة الفنية.', a: 'صواب (✓)' },
+                    { q: 'حفلات السمر واياد النار وطهى الخلاء من اهم مهام لجنة انشطة الخلاء.', a: 'صواب (✓)' },
+                    { q: 'القيام برقابه ومتابعه جميع اعمال المعسكر من اهم مهام مدير الرقابة والتقويم.', a: 'صواب (✓)' },
+                    { q: 'من اهداف المعسكرات تنمية روح المخاطرة والاكتشاف فقط.', a: 'خطأ (✗)' },
+                    { q: 'من خطوات اعداد المعسكرات تحديد الغرض من المعسكر وتحديد مده المعسكر.', a: 'صواب (✓)' },
+                    { q: 'من اغراض حفل السمر اكتشاف المواهب وصقلها وتنميتها.', a: 'صواب (✓)' },
+                    { q: 'يشتمل برنامج حفل السمر بايقاد النيران والقرآن الكريم وكلمه الافتتاح فقط.', a: 'خطأ (✗)' },
+                    { q: 'العقدة الثمانية هي طريقة بسيطة لحبك طرف الحبل.', a: 'صواب (✓)' },
+                    { q: 'العقدة الأفقية تستخدم في وصل حبلين ذا سمك واحد اذا كانت الحبال مبللة او عليها زيت او شحم.', a: 'خطأ (✗)' },
+                    { q: 'الحيكة الثمانية هي تلف حبل شاذ بملفاته التجاوزية على امن من الحيكة البسيطة.', a: 'صواب (✓)' },
+                    { q: 'العقدة تستعمل لربط حبلين بعضهما البعض او ربط طرف الحبل في أصله.', a: 'صواب (✓)' },
+                    { q: 'عقدة السماك تستخدم في تقصير الحبل اذا كان طويل دون الحاجه الى قطعة او تقويته.', a: 'خطأ (✗)' },
+                    { q: 'عقدة السلسلة تستخدم في تقصير الحبل وتجميله حيث يتم تحويرها واستخدام تحويرات لعمل عقد.', a: 'صواب (✓)' },
+                    { q: 'عقدة المطافئ وتسمى المصاعد لأنها تصنع في وسط الحبل للمساعدة في جر الأشياء الثقيلة.', a: 'صواب (✓)' },
+                    { q: 'الربطات تستعمل في ربط الحبل في عمود او أي شيء ثابت مثل الشجرة.', a: 'صواب (✓)' },
+                    { q: 'الربطة الوتدية تستخدم في ربط حبل يوتد او قائم وهي بداية لبعض الدورات كما توجد طريقة اخرى لربط الوتد.', a: 'صواب (✓)' },
+                    { q: 'ربطة السلم تستخدم لحزم الخشب او الحطب وتكون بدايتها بتثبيت حبل بخرق الخشب.', a: 'خطأ (✗)' },
+                    { q: 'ربطة السلم تستخدم في عمل سلم من الحبل باستخدام اخشاب صغيرة وذلك لتسلق الأماكن المرتفعة.', a: 'صواب (✓)' },
+                    { q: 'تختلف المعسكرات تبعا لأربعة اشياء.', a: 'خطأ (✗)' },
+                    { q: 'معسكرات العمل لا تقل المدة فيها عن عشرين يوما.', a: 'خطأ (✗)' },
+                    { q: 'تقام معسكرات العمال ثلاث مرات في السنة.', a: 'خطأ (✗)' },
+                    { q: 'تختلف المعسكرات الترويحية حسب نوع وسن المشتركين.', a: 'صواب (✓)' },
+                    { q: 'يمكن تقسيم المعسكرات حسب المدة إلى معسكر اليوم الواحد والليلة الواحدة والمعسكر الطويل.', a: 'صواب (✓)' },
+                    { q: 'من أهمية المعسكرات انها تنمى الثقة بالنفس.', a: 'صواب (✓)' },
+                    { q: 'من الأغراض العامة للمعسكرات التربية الترويحية.', a: 'صواب (✓)' },
+                    { q: 'يشير اصحاب المذهب الواقعي الى عدم اهمية المعسكرات بالنسبة للأفراد.', a: 'خطأ (✗)' },
+                    { q: 'المذهب المثالي هو احدى انواع برامج المعسكرات.', a: 'خطأ (✗)' },
+                    { q: 'المذهب الطبيعي هو احدى فلسفة المعسكرات.', a: 'صواب (✓)' },
+                    { q: 'من الادوات الهامة للتخييم الملايات وفرش الارض.', a: 'صواب (✓)' },
+                    { q: 'من أنواع الخيام الخيمة العربية.', a: 'صواب (✓)' },
+                    { q: 'ترويح الخلاء هو إحدى أنواع الترويح التي تشمل برامجه على العديد من أوجه النشاط.', a: 'صواب (✓)' },
+                    { q: 'تستخدم النار المربعة في حفلات السمر.', a: 'صواب (✓)' },
+                    { q: 'من شروط ايقاد النيران اختيار المكان المناسب للاشتعال.', a: 'صواب (✓)' },
+                    { q: 'تعد حبال النايلون من أنواع الحبال البتروكيماوية.', a: 'صواب (✓)' },
+                    { q: 'عقدة التقصيرة تستخدم للوصل بين حبلين من سمكين مختلفين.', a: 'خطأ (✗)' },
+                    { q: 'عقدة السماك تستخدم في وصل حبلين من سمك واحد.', a: 'صواب (✓)' },
+                    
+                    { q: 'اذكر نوع النيران بالشكل الموضح أمامك هي ............ (صورة نار نجمية)', a: 'النار النجمية' },
+                    { q: 'تذكر نوع النيران الموضحة بالصورة التي أمامك ............ (صورة نار الخندق)', a: 'نار الخندق' },
+                    { q: 'الشكل الموضح بالصورة التي امامك هو ............ (صورة خطوات عمل ربطة وتدية)', a: 'ربطه الدورة والنصف دوره' },
+                    { q: 'نوع العقدة الموضحة بالصورة التي امامك هي ............ (صورة عقدة الخلبة)', a: 'عقده الخلبة' },
+                    { q: 'نوع العقدة المرسومة بالشكل امامك هي العقدة ............ (صورة عقدة أفقية)', a: 'العقدة الأفقية' },
+                    { q: '............ نوع الخيمة الموضحة بالصورة التي امامك هي ............ (صورة خيمة وتدية)', a: 'الرحالة' },
+                    { q: 'تشير الصورة التي امامك إلى احد أنواع الخيام وهي الخيمة ............ (صورة خيمة هرمية)', a: 'الهرمية' },
+                    { q: '............ هي من أنواع النيران التي تتميز بشده الحراره وتركيزها وتستخدم في تجفيف الحطب.', a: 'النار العاكسة' },
+                    { q: 'قسم حلمي ابراهيم الترويح في الخلاء الى ..........', a: 'جميع ما سبق' },
+                    
+                ],
+                law: [
+                    { q: 'كم عدد بنود القانون الكشفي؟', a: '10 بنود' },
+                    { q: 'اذكر أول بند من بنود القانون الكشفي.', a: 'الكشاف صادق' },
+                    { q: 'اذكر ثاني بند من بنود القانون الكشفي.', a: 'الكشاف مخلص' },
+                    { q: 'اذكر ثالث بند من بنود القانون الكشفي.', a: 'الكشاف نافع' },
+                    { q: 'اذكر رابع بند من بنود القانون الكشفي.', a: 'الكشاف ودود' },
+                    { q: 'اذكر خامس بند من بنود القانون الكشفي.', a: 'الكشاف مؤدب' },
+                    { q: 'اذكر سادس بند من بنود القانون الكشفي.', a: 'الكشاف صديق للطبيعة' },
+                    { q: 'اذكر سابع بند من بنود القانون الكشفي.', a: 'الكشاف مطيع' },
+                    { q: 'اذكر ثامن بند من بنود القانون الكشفي.', a: 'الكشاف مبتسم' },
+                    { q: 'اذكر تاسع بند من بنود القانون الكشفي.', a: 'الكشاف مقتصد' },
+                    { q: 'اذكر عاشر بند من بنود القانون الكشفي.', a: 'الكشاف طاهر الفكر والقول والعمل' },
+                    { q: 'ما هو الوعد الكشفي؟', a: 'أعد أن أبذل جهدي في أن أقوم بواجبي نحو الله والوطن...' },
+                    { q: 'ما هو شعار الكشافة؟', a: 'كن مستعدًا' },
+                    { q: 'ما هو رمز زهرة اللوتس في الكشافة؟', a: 'النقاء والولاء' },
+                    { q: 'ما هو معنى كلمة "الكشاف صادق"؟', a: 'يقول الحقيقة دائمًا' },
+                    { q: 'ما هو معنى كلمة "الكشاف مخلص"؟', a: 'يخلص لله ولوطنه ولوالديه' },
+                    { q: 'ما هو معنى كلمة "الكشاف نافع"؟', a: 'يساعد الآخرين في كل وقت' },
+                    { q: 'ما هو معنى كلمة "الكشاف ودود"؟', a: 'يحب الجميع ويعاملهم بلطف' },
+                    { q: 'ما هو معنى كلمة "الكشاف مؤدب"؟', a: 'يحترم الكبير ويعطف على الصغير' },
+                    { q: 'ما هو معنى كلمة "الكشاف صديق للطبيعة"؟', a: 'يحافظ على البيئة' },
+                    { q: 'ما هو معنى كلمة "الكشاف مطيع"؟', a: 'ينفذ الأوامر دون تذمر' },
+                    { q: 'ما هو معنى كلمة "الكشاف مبتسم"؟', a: 'يواجه الصعاب بابتسامة' },
+                    { q: 'ما هو معنى كلمة "الكشاف مقتصد"؟', a: 'لا يسرف في المال أو الوقت' },
+                    { q: 'ما هو معنى كلمة "الكشاف طاهر الفكر والقول والعمل"؟', a: 'يتجنب السوء في كل شيء' },
+                ],
+                general: [
+                    { q: 'ما هو شعار الكشافة العالمي؟', a: 'كن مستعدًا (Be Prepared)' },
+                    { q: 'ما هي زهرة الكشافة؟', a: 'زهرة اللوتس' },
+                    { q: 'ما هي ألوان علم الكشافة العالمي؟', a: 'بنفسجي مع شعار زهرة اللوتس البيضاء' },
+                    { q: 'ما هو الوعد الكشفي؟', a: 'أعد أن أبذل جهدي في أن أقوم بواجبي نحو الله والوطن...' },
+                    { q: 'ما هي أعلى رتبة كشفية؟', a: 'وسام الشارة الخشبية' },
+
+                    
+                    { q: 'تتكون الحبال من نمرين فقط ومجموعة من الخيوط.', a: 'خطأ (✗)' },
+                    { q: 'تصنع الحبال الطبيعية من النايلون.', a: 'خطأ (✗)' },
+                    { q: 'الدورة عبارة عن استعمال حبل مع أكثر من عمود (قائم).', a: 'صواب (✓)' },
+                    { q: 'الربطة عبارة عن استخدام حبل مع حبل اخر.', a: 'خطأ (✗)' },
+                    { q: 'يمكن عمل سلم من الحبال والاخشاب عن طريق الحبل الكشفي.', a: 'صواب (✓)' },
+                    { q: 'العقدة عبارة عن استخدام حبل مع نفسه فقط.', a: 'صواب (✓)' },
+                    { q: 'الحبل الذي يلتف بلفات حوله ولا يسقط منه شئ ذا فتحت لمحوره.', a: 'صواب (✓)' },
+                    { q: 'الحبال المصنوعة من القطن من أنواع الحبال البتروكيماوية.', a: 'خطأ (✗)' },
+                    { q: 'لا يمكن استخدام النار الهرمية في حفلات السمر والطهي.', a: 'خطأ (✗)' },
+                    { q: 'يمكن استخدام النار الهرمية في حالات الطقس السيئ.', a: 'خطأ (✗)' },
+                    { q: 'تستخدم الربطات الكشفية لتأمين طرفي الحبل.', a: 'صواب (✓)' },
+                    { q: 'يجب أن تكون ارض التخييم جافة وغير مبللة.', a: 'صواب (✓)' },
+                    { q: 'من شروط التخييم ان تكون الأرض غير مستوية بقدر الإمكان.', a: 'خطأ (✗)' },
+                    { q: 'تعتبر الحبال المصنوعة من الكتان او القطن من الحبال الطبيعية.', a: 'صواب (✓)' },
+                    { q: 'تستخدم العقدة الموصلة في وصل حبلين من نفس السمك.', a: 'صواب (✓)' },
+                    { q: 'تستخدم العقدة الموصلة في التزيين وشبك السلم.', a: 'خطأ (✗)' },
+                    { q: 'تستخدم عقدة السمك في حالة ما إذا كانت الحبال مبللة بالزيت أو الشحم.', a: 'صواب (✓)' },
+                    { q: 'تستخدم عقدة التقصيرة لتوصيل الحبال ببعضها.', a: 'خطأ (✗)' },
+                    { q: 'تستخدم الدورات في تثبيت مجموعة من الحبال مع قائم (عمود) واحد فقط.', a: 'خطأ (✗)' },
+                    { q: 'يجب ان يكون موقع التخييم في مكان منخفض عن الأرض.', a: 'خطأ (✗)' },
+                    { q: 'يجب ان يكون موقع التخييم بعيدا عن مصادر المياه النقية.', a: 'خطأ (✗)' },
+                    { q: 'تستخدم الحيكة الثمانية في تأمين طرفي حبل.', a: 'صواب (✓)' },
+                    { q: 'تستخدم نار الصقور ( الكانون ) في جميع أغراض الطهي.', a: 'صواب (✓)' },
+                    { q: 'تستخدم نار الحفرة لاغفال الحيوانات الضارة.', a: 'خطأ (✗)' },
+                    { q: 'يتم حفر حفرة غير عميقة في باطن الأرض بغرض الطهي المدفون.', a: 'صواب (✓)' },
+                    { q: 'نار الطهي المدفون لا يمكن ان تستوعب كميات كبيرة من الطعام.', a: 'خطأ (✗)' },
+                    { q: 'تحتاج نار الصيد إلى أخشاب رطبة أو مبللة وايضا أخشاب جافة لتدوم أطول.', a: 'خطأ (✗)' },
+                    { q: 'تستخدم نار الصياد في صناعة الخبز.', a: 'خطأ (✗)' },
+                    { q: 'لا يمكن استخدام النار العاكسة في الضوء.', a: 'خطأ (✗)' },
+                    { q: 'تحتاج النار العاكسة إلى أحجار أو صخور عند عملها.', a: 'صواب (✓)' },
+                    { q: 'تستعمل نار الخندق للمحافظة على الحرارة والوقود.', a: 'صواب (✓)' },
+                    { q: 'تستخدم نار الخندق في حالة إن كانت الأرض مبللة.', a: 'صواب (✓)' },
+                    { q: 'يمكن استخدام نار الخندق في صناعة الخبز.', a: 'صواب (✓)' },
+                    { q: 'يتم عمل نار الصقور بحفر حفرة في باطن الأرض.', a: 'خطأ (✗)' },
+                    { q: 'لا يمكن استعمال حامل معدني.', a: 'خطأ (✗)' },
+                    { q: 'تستخدم نار النجمة بالقرب من الخيام والأمتعة.', a: 'صواب (✓)' },
+                    { q: 'لا تحتاج نار النجمة لتهوية كافية.', a: 'خطأ (✗)' },
+                    
+                    { q: 'تستخدم النار العاكسة في ............', a: 'صناعة الخبز' },
+                    { q: 'تستخدم نار الصياد في ............', a: 'الطهي' },
+                    { q: 'تستخدم نار الخندق في ............', a: 'الحماية من الرياح' },
+                    { q: 'تستخدم نار النجمة في ............', a: 'التدفئة' },
+                    { q: 'يجب إطفاء النيران بعد الإستخدام بـ ..........', a: 'الماء والرمال' },
+                    { q: 'تستخدم النار المربعة في ............', a: 'حفلات السمر' },
+                    { q: 'تستهلك النار المتقاطعة كميات ............ من الأخشاب.', a: 'متوسطة' },
+                    { q: 'تعتبر نار الشقاق نوع من أنواع النيران ............', a: 'الموقدية' },
+                    { q: 'تعتبر النار العربية أحد أنواع النيران ............ بالنسبة لاستخدام الأخشاب.', a: 'البسيطة' },
+                    { q: 'تستخدم النار النجمية في ............', a: 'التدفئة' },
+                    { q: 'تستخدم نار الحفرة في ............', a: 'الطهي' },
+                    { q: 'توضع الأخشاب في النار المربعة على شكل ............', a: 'هرم' },
+                    { q: 'يمكن استخدام السمر الكشفي في ............', a: 'جميع ما سبق' },
+                    { q: 'من آداب السمر تشجيع الفقرات الناجحة عن طريق ............', a: 'التصفيق' },
+                    { q: 'يجب أن يكون مكان حفل السمر ............ مكان الخيام.', a: 'بعيداً عن' },
+                    { q: 'من مشتملات برنامج السمر الكشفي ............', a: 'القصة الحركية' },
+                    { q: 'من أهداف حفلات السمر ............', a: 'تنمية روح الجماعة' },
+                    { q: 'المهام التي يكلف بها القائمون على حفلات السمر ............', a: 'جميع ما سبق' },
+                    { q: 'صفات مقدم السمر ............', a: 'حسن التصرف' },
+                    { q: 'من انواع الخيام ............', a: 'جميع ما سبق' },
+                    { q: 'أنواع الحبال ............', a: 'جميع ما سبق' },
+                    { q: 'تستعمل الربطة في ربط الحبل في ............', a: 'عمود' },
+                    { q: 'تستخدم النيران في المعسكرات من أجل ............', a: 'جميع ما سبق' },
+                    { q: 'عند إيقاد النيران يجب اختيار الأخشاب ............', a: 'الجافة' },
+                    { q: 'تعتبر الحبال المصنوعة من الكتان من أنواع الحبال ............', a: 'الطبيعية' },
+                    { q: 'يطلق اسم (الوتدية) على ............', a: 'الدورة مع العقدة' },
+                    { q: 'يطلق اسم (الحطاب) على ............', a: 'الدورة مع نصف عقدة' },
+                    { q: 'يطلق اسم (النوتية) على ............', a: 'الأفقية' },
+                    { q: 'تسمى العقدة ............ بالتقصيرية.', a: 'السلسلة' },
+                    { q: 'يشير هذا النموذج الي ............ (صورة نار هرمية)', a: 'النار الهرمية' },
+                    { q: 'يشير هذا النموذج الي ............ (صورة نار الصياد)', a: 'نار الصياد' },
+                    { q: 'يشير هذا النموذج الي ............ (صورة نار الطهي المدفون)', a: 'نار الطهي المدفون' },
+                    { q: 'يشير هذا النموذج الي ............ (صورة نار عاكسة)', a: 'النار العاكسة' },
+                    { q: 'يشير هذا النموذج الي ............ (صورة نار الخندق)', a: 'نار الخندق' },
+                    { q: 'يشير هذا النموذج الي ............ (صورة عقدة بسيطة)', a: 'العقدة البسيطة' },
+                    { q: 'يشير هذا النموذج الي ............ (صورة عقدة بشكل رقم 8)', a: 'الحيكة الثمانية' },
+                    { q: 'يشير هذا النموذج الي ............ (صورة عقدة أفقية)', a: 'العقدة الأفقية' },
+                    { q: 'يشير هذا النموذج الى ............ (صورة ربطة وتدية)', a: 'الوتدية' },
+                    { q: 'يشير هذا النموذج الى ............ (صورة عقدة تقصير)', a: 'الدورة المقصبة' },
+                    { q: 'يشير هذا النموذج الى ............ (صورة عقدة السماك)', a: 'عقدة السماك' },
+                    
                 ],
             };
             let allQuestions = [];
@@ -1562,7 +1815,7 @@
                   optionsDiv.appendChild(btn);
                 });
               }
-              // --- أضف هذا السطر لجعل زر العين دائماً مشطوب عند عرض سؤال جديد ---
+              
               if (showAnswerBtn) {
                 showAnswerBtn.innerHTML = `
                   <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
@@ -1572,12 +1825,12 @@
                 `;
               }
               if (addToHistory) {
-                // إذا كنا في نهاية السجل، أضف السؤال
+            
                 if (quizHistoryIndex === quizHistory.length - 1) {
                   quizHistory.push(q);
                   quizHistoryIndex = quizHistory.length - 1;
                 } else {
-                  // إذا عدنا للخلف ثم ضغطنا "التالي"، احذف كل ما بعد المؤشر وأضف السؤال الجديد
+                
                   quizHistory = quizHistory.slice(0, quizHistoryIndex + 1);
                   quizHistory.push(q);
                   quizHistoryIndex = quizHistory.length - 1;
@@ -1602,17 +1855,16 @@
               if (nextBtn) nextBtn.disabled = quizHistoryIndex >= quizHistory.length - 1;
             }
 
-            // إضافة أزرار السابق/التالي وزر إظهار/إخفاء الإجابة إذا لم تكن موجودة
+            
             (function ensureQuizNavButtons() {
               const quizCard = document.getElementById('quiz-card');
-              // إزالة أي أزرار قديمة
               const oldPrev = document.getElementById('prev-question-btn');
               if (oldPrev) oldPrev.remove();
               const oldNext = document.getElementById('next-question-btn');
               if (oldNext) oldNext.remove();
               const oldShow = document.getElementById('show-answer-btn');
               if (oldShow) oldShow.remove();
-              // حاوية للأزرار السفلية
+              
               let navBtnsWrap = document.getElementById('quiz-nav-btns-wrap');
               if (!navBtnsWrap) {
                 navBtnsWrap = document.createElement('div');
@@ -1630,7 +1882,7 @@
                 navBtnsWrap.style.width = '340px';
                 quizCard.appendChild(navBtnsWrap);
               }
-              // زر السابق (يسار)
+              
               if (!document.getElementById('prev-question-btn')) {
                 const prevBtn = document.createElement('button');
                 prevBtn.id = 'prev-question-btn';
@@ -1640,7 +1892,7 @@
                 prevBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>';                
                 navBtnsWrap.appendChild(prevBtn);
               }
-              // زر التالي (يمين)
+              
               if (!document.getElementById('next-question-btn')) {
                 const nextBtn = document.createElement('button');
                 nextBtn.id = 'next-question-btn';
@@ -1650,7 +1902,7 @@
                 nextBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
                 navBtnsWrap.appendChild(nextBtn);
               }
-              // زر إظهار/إخفاء الإجابة (أيقونة عين فقط)
+              
               if (!document.getElementById('show-answer-btn')) {
                 const showBtn = document.createElement('button');
                 showBtn.id = 'show-answer-btn';
@@ -1670,14 +1922,14 @@
               }
             })();
 
-            // زر إظهار/إخفاء الإجابة (أيقونة فقط)
+        
             const showAnswerBtn = document.getElementById('show-answer-btn');
             if (showAnswerBtn) {
               showAnswerBtn.addEventListener('click', function() {
                 const answerDiv = document.getElementById('quiz-answer');
                 if (answerDiv.classList.contains('hidden')) {
                   answerDiv.classList.remove('hidden');
-                  // عين سليمة
+                
                   showAnswerBtn.innerHTML = `
                     <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
                       <path fill="currentColor" d="M12 5c-7 0-9 7-9 7s2 7 9 7 9-7 9-7-2-7-9-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -1685,7 +1937,7 @@
                   `;
                 } else {
                   answerDiv.classList.add('hidden');
-                  // عين مشطوبة (خط بنفسجي غامق فوق العين، ظاهر دائمًا)
+                  
                   showAnswerBtn.innerHTML = `
                     <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
                       <path fill="currentColor" d="M4 4L20 20" stroke="#8a3fb1" stroke-width="2"/>
@@ -1697,7 +1949,7 @@
               });
             }
 
-            // زر التالي
+        
             const nextQuestionBtn = document.getElementById('next-question-btn');
             nextQuestionBtn.addEventListener('click', function() {
               let idx;
@@ -1707,7 +1959,7 @@
               setQuizQuestion(allQuestions[idx], true);
             });
 
-            // زر السابق
+            
             const prevQuestionBtn = document.getElementById('prev-question-btn');
             prevQuestionBtn.addEventListener('click', function() {
               if (quizHistoryIndex > 0) {
@@ -1726,7 +1978,7 @@
             }
             showRandomQuizQuestion();
 
-            // --- Game Logic ---
+            
             const gameStages = document.querySelectorAll('.game-stage');
             const segmentModal = document.getElementById('game-segment-modal');
             const quizModal = document.getElementById('game-quiz-modal');
@@ -1738,7 +1990,7 @@
             let questionIndex = 0;
             const completedStages = new Set();
 
-            // دعم المراحل الجديدة (الدوائر العمودية)
+        
             document.querySelectorAll('.game-stage-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const stageNum = btn.dataset.stage;
@@ -1808,7 +2060,7 @@
                     displayGameQuestion();
                 } else {
                     completedStages.add(parseInt(currentStage));
-                    placeStagesOnPath(); // Re-render map to show completed state
+                    placeStagesOnPath(); 
                     quizModal.classList.add('hidden');
                 }
             });
@@ -1817,7 +2069,7 @@
                 quizModal.classList.add('hidden');
             });
 
-            // --- Place stages on SVG path ---
+            
             function placeStagesOnPath() {
                 const svg = document.getElementById('scout-game-path');
                 const path = document.getElementById('scout-game-main-path');
@@ -1827,17 +2079,15 @@
                 const numStages = 5;
                 const stageNames = ["البداية", "المرحلة الثانية", "المرحلة الثالثة", "المرحلة الرابعة", "النهاية"];
 
-                // حساب الأطوال
+                
                 const pathLength = path.getTotalLength();
-                // طول كل نصف دائرة (Arc) تقريبا (المسار فيه 6 أقواس تقريبًا)
                 const arcLength = pathLength / 6;
-                // نقاط المراحل: البداية، منتصف أول Arc، منتصف ثاني Arc، منتصف ثالث Arc، نهاية المسار
                 const stagePoints = [
-                    0, // بداية المسار
-                    arcLength / 2, // منتصف أول Arc
-                    arcLength + arcLength / 2, // منتصف ثاني Arc
-                    2 * arcLength + arcLength / 2, // منتصف ثالث Arc
-                    pathLength // نهاية المسار
+                    0, 
+                    arcLength / 2, 
+                    arcLength + arcLength / 2, 
+                    2 * arcLength + arcLength / 2, 
+                    pathLength 
                 ];
 
                 for (let i = 0; i < numStages; i++) {
@@ -1859,7 +2109,7 @@
                     `;
                     stagesContainer.appendChild(stageDiv);
                 }
-                // إعادة ربط الأحداث
+                
                 document.querySelectorAll('.game-stage').forEach(stage => {
                     stage.addEventListener('click', () => {
                         const stageNum = stage.dataset.stage;
@@ -1870,7 +2120,7 @@
                     });
                 });
             }
-            // Place stages after DOMContentLoaded
+        
             placeStagesOnPath();
 
         });
@@ -1920,28 +2170,28 @@
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // ... existing code ...
-    // Toggle for قصص submenu
+   
     const storiesMenuToggle = document.querySelector('.stories-menu-toggle');
     const storiesSubmenu = document.querySelector('.stories-submenu');
     const storiesCaret = document.querySelector('.stories-caret');
     if (storiesMenuToggle && storiesSubmenu && storiesCaret) {
         storiesMenuToggle.addEventListener('click', function(e) {
             e.stopPropagation();
-            // فقط فتح/غلق القائمة الفرعية بدون أي تنقل أو active أو تغيير محتوى
             const isOpen = storiesSubmenu.style.display === 'block';
             storiesSubmenu.style.display = isOpen ? 'none' : 'block';
             storiesCaret.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-            // لا تزيل أو تضيف active لأي عنصر هنا
+        
+            if (!isOpen) {
+                patrolPillarsSubmenu.style.display = 'none';
+                patrolPillarsCaret.style.transform = 'rotate(0deg)';
+            }
         });
-        // دعم فتح القائمة بالكيبورد
         storiesMenuToggle.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 storiesMenuToggle.click();
             }
         });
-        // Close submenu when clicking outside
         document.addEventListener('click', function(e) {
             if (!storiesMenuToggle.contains(e.target) && !storiesSubmenu.contains(e.target)) {
                 storiesSubmenu.style.display = 'none';
@@ -1949,7 +2199,45 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    // ... existing code ...
+    
+    const patrolPillarsMenuToggle = document.querySelector('.patrol-pillars-menu-toggle');
+    const patrolPillarsSubmenu = document.querySelector('.patrol-pillars-submenu');
+    const patrolPillarsCaret = document.querySelector('.patrol-pillars-caret');
+    if (patrolPillarsMenuToggle && patrolPillarsSubmenu && patrolPillarsCaret) {
+        patrolPillarsMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = patrolPillarsSubmenu.style.display === 'block';
+            patrolPillarsSubmenu.style.display = isOpen ? 'none' : 'block';
+            patrolPillarsCaret.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+           
+            if (!isOpen) {
+                storiesSubmenu.style.display = 'none';
+                storiesCaret.style.transform = 'rotate(0deg)';
+            }
+        });
+        patrolPillarsMenuToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                patrolPillarsMenuToggle.click();
+            }
+        });
+        document.addEventListener('click', function(e) {
+            if (!patrolPillarsMenuToggle.contains(e.target) && !patrolPillarsSubmenu.contains(e.target)) {
+                patrolPillarsSubmenu.style.display = 'none';
+                patrolPillarsCaret.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
+   
+    function removeActiveFromMenuToggles() {
+        storiesMenuToggle.classList.remove('active');
+        patrolPillarsMenuToggle.classList.remove('active');
+    }
+ 
+    if (storiesMenuToggle && patrolPillarsMenuToggle) {
+        storiesMenuToggle.addEventListener('click', removeActiveFromMenuToggles);
+        patrolPillarsMenuToggle.addEventListener('click', removeActiveFromMenuToggles);
+    }
 });
 </script>
 
@@ -2017,13 +2305,118 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             </section>
+            <section id="prof_scouts_in_ww" class="prof_content_section">
+                <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+                    <h2 class="text-4xl font-extrabold text-white mb-6 text-center">دور الكشافة في الحرب العالمية</h2>
+                    <div class="space-y-6 text-lg text-light leading-loose">
+                        <p>لعبت الكشافة دوراً مهماً خلال الحرب العالمية الثانية، حيث قدموا مساعدات إنسانية كبيرة وشاركوا في حركات المقاومة في العديد من البلدان المحتلة. كانوا يساعدون في توزيع الطعام والإمدادات، ورعاية الجرحى، وجمع المعلومات الاستخباراتية، والمشاركة في عمليات التخريب والتهريب.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">إسهامات الكشافة خلال الحرب:</h3>
+                        <ul class="list-disc pr-6 space-y-2">
+                            <li><strong>المساعدات الإنسانية:</strong> قدم الكشافة مساعدات كبيرة للمدنيين المتضررين من الحرب، بما في ذلك توزيع الطعام والإمدادات، ورعاية الجرحى والمرضى، وتقديم المساعدة في الإجلاء من المناطق الخطرة.</li>
+                            <li><strong>المعلومات الاستخباراتية:</strong> في العديد من البلدان المحتلة، ساهم الكشافة في جمع المعلومات الاستخباراتية حول تحركات القوات الألمانية وتمركزها، ونقلها إلى قوات الحلفاء.</li>
+                            <li><strong>المقاومة:</strong> شارك الكشافة في حركات المقاومة السرية ضد الاحتلال، وقاموا بتنفيذ عمليات تخريبية، وساعدوا في تهريب الأسرى والجنود إلى مناطق آمنة.</li>
+                            <li><strong>الخدمة العسكرية:</strong> انضم العديد من الكشافة إلى الجيوش النظامية وشاركوا في العمليات العسكرية، خاصة في مجالات الاتصالات والاستطلاع والمساعدة الطبية.</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">أمثلة على مشاركة الكشافة:</h3>
+                        <ul class="list-disc pr-6 space-y-2">
+                            <li><strong>بولندا:</strong> حافظ الكشافة البولندية على قسمهم وشاركوا في المقاومة، حتى بعد سقوط بلادهم في يد الاحتلال.</li>
+                            <li><strong>الدول المحتلة:</strong> لعب الكشافة دوراً مهماً في حركات المقاومة في فرنسا وبلجيكا وهولندا وغيرها من البلدان المحتلة.</li>
+                            <li><strong>بريطانيا:</strong> انخرط الكشافة البريطانيون في أنشطة الإغاثة والمساعدة في زمن الحرب، وشاركوا في الدفاع المدني، وقاموا بدوريات المراقبة.</li>
+                        </ul>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">أهمية دور الكشافة:</h3>
+                        <ul class="list-disc pr-6 space-y-2">
+                            <li><strong>الشباب:</strong> أثبت الكشافة أنهم قوة فاعلة في المجتمع، وقدموا مساهمات كبيرة في أوقات الأزمات.</li>
+                            <li><strong>المهارات:</strong> اكتسب الكشافة خلال الحرب مهارات قيادية وتنظيمية وعملية، عززت قدرتهم على العمل الجماعي والتعامل مع المواقف الصعبة.</li>
+                            <li><strong>القيم:</strong> عززت الحرب القيم الكشفية مثل الشجاعة والمسؤولية والتضحية بالنفس، وأثبتت أهميتها في أوقات الشدائد.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="prof_important_figures" class="prof_content_section">
+                <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+                    <h2 class="text-4xl font-extrabold text-white mb-6 text-center">شخصيات لها دور اساسي ومهم في الحركة الكشفية</h2>
+                    <div class="space-y-6 text-lg text-light leading-loose">
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">الأمير يوسف كمال</h3>
+                        <p>وُلد الأمير يوسف كمال عام 1882 في القاهرة، وهو أحد أمراء الأسرة العلوية التي حكمت مصر. نشأ في بيئة أرستقراطية، لكنه كان مختلفًا عن أقرانه، إذ اهتم منذ صغره بالعلم والثقافة وخدمة المجتمع. تلقى تعليمه في مصر وأوروبا، واطلع على أحدث الأفكار التربوية والاجتماعية في عصره.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">دعم الكشافة المصرية</h3>
+                        <p>في أوائل القرن العشرين، ومع انتشار الحركة الكشفية في أوروبا، أدرك الأمير يوسف كمال أهمية هذه الحركة في تربية الشباب المصري على القيم الوطنية والانضباط. في عام 1914، أسس أول فرقة كشفية رسمية في مصر، ودعمها ماديًا ومعنويًا، وحرص على أن تضم الفتيان من مختلف الطبقات الاجتماعية.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">الريادة العربية والدولية</h3>
+                        <p>لم يكتف الأمير يوسف كمال بتأسيس الكشافة في مصر، بل عمل على ربطها بالحركة الكشفية العالمية، وشارك في مؤتمرات دولية، وساهم في تطوير البرامج الكشفية لتناسب البيئة المصرية والعربية. شجع على تنظيم المخيمات والرحلات الكشفية، واعتبر الكشافة وسيلة لتربية جيل من الشباب القادر على خدمة الوطن.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">الإنجازات والإرث</h3>
+                        <p>كان الأمير يوسف كمال أيضًا راعيًا للفنون والعلوم، وأسهم في تأسيس العديد من المؤسسات الثقافية والتعليمية في مصر. ظل طوال حياته مؤمنًا بأن الكشافة ليست مجرد أنشطة ترفيهية، بل مدرسة للحياة، تغرس في الشباب قيم التعاون، القيادة، وحب الوطن. توفي عام 1969، لكنه بقي رمزًا من رموز النهضة التربوية في مصر والعالم العربي.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">أولاف كولس (أولاف بادن باول)</h3>
+                        <p>وُلدت أولاف ماري سوامز عام 1889 في بريطانيا لعائلة ميسورة الحال. منذ صغرها، أظهرت شخصية قوية، وحبًا للمغامرة، واهتمامًا بالأنشطة الخارجية.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">اللقاء مع بادن باول والزواج</h3>
+                        <p>التقت باللورد بادن باول، مؤسس الحركة الكشفية، في إحدى الرحلات البحرية، وسرعان ما نشأت بينهما علاقة صداقة ثم زواج عام 1912. لم تكن أولاف مجرد زوجة لمؤسس الكشافة، بل أصبحت شريكته في نشر الفكرة الكشفية والإرشادية حول العالم.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">تأسيس الحركة الإرشادية</h3>
+                        <p>في عام 1916، أسست أولاف أول فرقة للمرشدات (الكشافة للفتيات) في بريطانيا، وسرعان ما انتشرت الفكرة في أوروبا والعالم. بفضل نشاطها وحماسها، تم تعيينها رئيسة عالمية للمرشدات عام 1930.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">القيادة العالمية والتأثير</h3>
+                        <p>سافرت أولاف إلى أكثر من 100 دولة، وزارت مخيمات المرشدات والكشافة، وشجعت الفتيات على الانخراط في العمل الإرشادي، وتعلم المهارات القيادية، وخدمة المجتمع. كانت تؤمن بأن الفتاة قادرة على تحقيق الإنجازات مثل الفتى، وأن الإرشاد وسيلة لتربية جيل من النساء القادرات على القيادة والتغيير.</p>
+                        <h3 class="text-2xl font-bold text-scout-accent mb-2">التحديات والإرث</h3>
+                        <p>واجهت أولاف تحديات كبيرة، خاصة خلال الحربين العالميتين، لكنها لم تتوقف عن دعم المرشدات، وكتبت العديد من الكتب والخطابات التي ألهمت أجيالًا من الفتيات. بفضل جهودها، أصبحت الحركة الإرشادية عالمية، تضم ملايين الفتيات من مختلف الثقافات والأديان. توفيت عام 1977، لكنها تركت إرثًا خالدًا في قلوب المرشدات والكشافة حول العالم.</p>
+                    </div>
+                </div>
+            </section>
+    <section id="prof_key_figures" class="prof_content_section">
+    <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+        <h2 class="text-4xl font-extrabold text-white mb-6 text-center">شخصيات لها دور اساسي ومهم في الحركة الكشفية</h2>
+        <div class="space-y-6 text-lg text-light leading-loose">
+            <h3 class="text-2xl font-bold text-scout-accent mb-2">شخصيات صنعت التاريخ الكشفي: رواد التأسيس والتطوير في الحركة الكشفية</h3>
+            <p>منذ انطلاقها في أوائل القرن العشرين، لم تكن الحركة الكشفية مجرد نشاط شبابي ترفيهي، بل حركة عالمية تربوية إنسانية شكّلت وجدان أجيال متعاقبة وساهمت في بناء القيم والانضباط والقيادة لدى ملايين الشباب حول العالم. وكان وراء هذه الحركة شخصيات محورية، لعبت أدوارًا حاسمة في التأسيس والتطوير، نذكر منها أبرز الروّاد الذين تركوا بصمات خالدة في التاريخ الكشفي.</p>
+            <hr class="my-4 border-scout-accent/40">
+            <h4 class="text-xl font-bold text-scout-accent mb-1">أولاً: اللورد بادن باول – المؤسس والرؤية العالمية</h4>
+            <p><strong>الاسم الكامل:</strong> روبرت ستيفنسون سميث بادِن باول</p>
+            <p>يُعتبر اللورد بادن باول الأب الروحي للحركة الكشفية ومؤسسها الأول. وُلِد في 22 فبراير 1857 في لندن، وشكّل مسيرته العسكرية في الجيش البريطاني ركيزةً لتطوير منهج كشفي متكامل يعتمد على تنمية القدرات والاعتماد على النفس.</p>
+            <ul class="list-disc pr-6 space-y-2">
+                <li>في عام 1907، نظّم أول مخيم كشفي في جزيرة براونسي بمشاركة 20 فتى، ليُدوِّن تجربته في كتابه الشهير "الكشافة للأولاد" (Scouting for Boys) عام 1908، الذي أصبح المرجع الأول للحركة وانتشر بسرعة في أنحاء العالم.</li>
+            </ul>
+            <p class="mt-2"><strong>أثره الأساسي:</strong></p>
+            <ul class="list-disc pr-6 space-y-2">
+                <li>وضع المبادئ التربوية للكشافة: الشرف، الخدمة، القيادة، الحياة في الطبيعة.</li>
+                <li>أسس المنظمة الكشفية العالمية.</li>
+                <li>ساهم في نشر الحركة في القارات الخمس.</li>
+            </ul>
+            <hr class="my-4 border-scout-accent/40">
+            <h4 class="text-xl font-bold text-scout-accent mb-1">ثانيًا: أولاف بدرسن – مفكر الحركة الكشفية العالمية</h4>
+            <p><strong>الجنسية:</strong> نرويجي</p>
+            <p>شغل أولاف بدرسن منصب الأمين العام للمنظمة الكشفية العالمية في خمسينيات القرن العشرين، وكان له دور بارز في توحيد المبادئ الكشفية وتنمية العلاقات بين الجمعيات الوطنية.</p>
+            <p class="mt-2"><strong>أثره الأساسي:</strong></p>
+            <ul class="list-disc pr-6 space-y-2">
+                <li>تطوير السياسات التربوية للحركة الكشفية عالميًا.</li>
+                <li>دفع نحو تعميق الجانب الإنساني والتربوي في الأنشطة الكشفية.</li>
+                <li>ساهم في عقد العديد من المؤتمرات العالمية لتوحيد الجهود الكشفية.</li>
+            </ul>
+            <hr class="my-4 border-scout-accent/40">
+            <h4 class="text-xl font-bold text-scout-accent mb-1">ثالثًا: اللورد رولاند هيل – قائد الكشافة في المملكة المتحدة بعد بادن باول</h4>
+            <p>كان من أوائل الشخصيات التي تولت مسؤولية قيادة الكشافة في المملكة المتحدة بعد وفاة بادن باول، واستمر في ترسيخ قيم المؤسس مع تبني منهجيات حديثة تناسب تغيرات العصر.</p>
+            <p class="mt-2"><strong>أثره الأساسي:</strong></p>
+            <ul class="list-disc pr-6 space-y-2">
+                <li>قيادة الكشافة البريطانية خلال فترات حرجة من التغير الاجتماعي بعد الحرب العالمية الثانية.</li>
+                <li>تحديث البرامج التدريبية للقادة.</li>
+                <li>تعزيز التعاون بين الجمعيات الأوروبية.</li>
+            </ul>
+            <hr class="my-4 border-scout-accent/40">
+            <h4 class="text-xl font-bold text-scout-accent mb-1">رابعًا: ليدي أوليف بادن باول – مؤسسة الحركة الإرشادية (الكشافة للفتيات)</h4>
+            <p><strong>الاسم الكامل:</strong> أوليف سانت كلير سومز</p>
+            <p>زوجة بادن باول، وكانت شريكته في تأسيس فرع الحركة الخاص بالفتيات. أطلقت عام 1910 أول حركة إرشادية للفتيات، بهدف تمكين النساء وتدريبهن على القيادة والخدمة.</p>
+            <p class="mt-2"><strong>أثرها الأساسي:</strong></p>
+            <ul class="list-disc pr-6 space-y-2">
+                <li>تأسيس "مرشدات العالم" World Girl Guides.</li>
+                <li>تطوير المناهج التعليمية للفتيات وفقًا للهوية الكشفية.</li>
+                <li>تعزيز مكانة المرأة في العمل المجتمعي.</li>
+            </ul>
+            <hr class="my-4 border-scout-accent/40">
+            <h4 class="text-xl font-bold text-scout-accent mb-1">خامسًا: شخصيات عربية رائدة</h4>
+            <p>من العالم العربي، برز عدد من القادة الكشفيين الذين ساهموا في نشر وتطوير الحركة، ومنهم:</p>
+            <ul class="list-decimal pr-6 space-y-2">
+                <li><strong>عبد الملك نوري (العراق):</strong> من أوائل مؤسسي الكشافة العراقية وأحد رموز الحركة العربية. عمل على تأسيس جمعية الكشافة العربية، وكان له دور في الربط بين الجمعيات في الوطن العربي.</li>
+                <li><strong>فؤاد رصاص (لبنان):</strong> ساهم في توثيق الحركة الكشفية تاريخيًا، وألّف العديد من الكتب والمراجع. عمل على تعريب المناهج الكشفية ونشرها في العالم العربي.</li>
+                <li><strong>الأمير يوسف كمال (مصر):</strong> ساهم في إدخال الكشافة إلى مصر منذ عام 1914. شجع على إنشاء المفوضيات الكشفية في المدارس والجامعات.</li>
+            </ul>
+            <hr class="my-4 border-scout-accent/40">
+            <h4 class="text-xl font-bold text-scout-accent mb-1">خاتمة</h4>
+            <p>الحركة الكشفية ليست ثمرة مجهود فردي، بل نتاج رؤية جماعية اشتركت فيها شخصيات عالمية وعربية بارزة، كان لها الأثر العميق في تشكيل هوية الكشافة كحركة إنسانية تربوية. من بادن باول المؤسس، إلى القادة العرب الذين حملوا المشعل في أوطانهم، تستمر الكشافة بفضل هذه الرموز، في بناء الإنسان وغرس القيم في قلوب الناشئة.</p>
         </div>
     </div>
-    <script>
-document.getElementById('close-welcome-banner').onclick = function() {
-  document.getElementById('welcome-banner').style.display = 'none';
-};
-</script>
-</body>
-</html>
-
+</section>
